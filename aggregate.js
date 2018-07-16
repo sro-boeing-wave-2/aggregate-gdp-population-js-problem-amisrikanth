@@ -7,14 +7,13 @@ const fs = require('fs');
 const countryToContinentMap = (dataOfCSV, dataOfMapping) => {
   const countryContinentMap = new Map(dataOfMapping);
   const countryContinentMapping = new Map();
-  dataOfCSV.pop();
-  dataOfCSV.pop();
   dataOfCSV.forEach((element) => {
     countryContinentMapping.set(element[0].slice(1, -1), countryContinentMap
       .get(element[0].slice(1, -1)));
   });
   return countryContinentMapping;
 };
+
 const readCSVFile = filePath => new Promise((resolve, reject) => {
   fs.readFile(filePath, 'utf8', (error, contents) => {
     if (error) {
@@ -22,7 +21,7 @@ const readCSVFile = filePath => new Promise((resolve, reject) => {
     } else {
       const arrOfContents = contents.split('\n');
       const arrOfCountryInfo = [];
-      for (let i = 1; i < arrOfContents.length; i += 1) {
+      for (let i = 1; i < arrOfContents.length - 2; i += 1) {
         const countryInfoArray = arrOfContents[i].split(',');
         arrOfCountryInfo.push(countryInfoArray);
       }
