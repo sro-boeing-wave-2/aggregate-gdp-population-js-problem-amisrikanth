@@ -21,12 +21,12 @@ const readCSVFile = filePath => new Promise((resolve, reject) => {
       reject();
     } else {
       const arrOfContents = contents.split('\n');
-      const arrOfJsonObjects = [];
+      const arrOfCountryInfo = [];
       for (let i = 1; i < arrOfContents.length; i += 1) {
         const countryInfoArray = arrOfContents[i].split(',');
-        arrOfJsonObjects.push(countryInfoArray);
+        arrOfCountryInfo.push(countryInfoArray);
       }
-      resolve(arrOfJsonObjects);
+      resolve(arrOfCountryInfo);
     }
   });
 });
